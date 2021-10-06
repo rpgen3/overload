@@ -14,18 +14,16 @@ export const over = {
         set(...args);
     },
     get load () {
-        const operands = [],
-              _o = Object.prototype.valueOf,
-              _n = Number.prototype.valueOf;
+        const _ = Object.prototype.valueOf,
+              operands = [];
         let i = 0;
-        Object.prototype.valueOf = Number.prototype.valueOf = function () {
+        Object.prototype.valueOf = function () {
             operands.push(this);
             return magicNumber[i++];
         };
         return function () {
-            Object.prototype.valueOf = _o;
-            Number.prototype.valueOf = _n;
-            if(operands.length !== 2) throw 'Operation must have 2 operands.';
+            Object.prototype.valueOf = _;
+            if(operands.length !== 2) throw 'Opperator must have 2 operands.';
             const [a, b] = operands;
             const m = get(g_map, a.constructor, () => {
                 throw `Left operand type is wrong.`;
