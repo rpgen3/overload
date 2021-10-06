@@ -9,7 +9,7 @@ const get = (map, key, callback = () => map.set(key, new Map)) => {
     if(!map.has(key)) callback();
     return map.get(key);
 };
-const over = {
+export const over = {
     set load (args) {
         set(...args);
     },
