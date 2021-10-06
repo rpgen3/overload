@@ -57,7 +57,7 @@
     });
     const inputA = rpgen3.addInputStr(body, {
         label: '第一項[A]',
-        value: 7
+        value: 21
     });
     const inputB = rpgen3.addInputStr(body, {
         label: '第二項[B]',
