@@ -18,6 +18,7 @@
     const addBtn = (h, ttl, func) => $('<button>').appendTo(h).text(ttl).on('click', func);
     const inputOperators = rpgen3.addInputStr(body, {
         label: '検証する演算子',
+        textarea: true,
         value: `+
 -
 *
