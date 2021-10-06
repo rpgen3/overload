@@ -1,5 +1,5 @@
-const magicNumber = [21, 3];
-const g_map = new Map;
+const magicNumber = [21, 3],
+      g_map = new Map;
 const set = (class1, operator, class2, func) => {
     const m = get(g_map, class1),
           _m = get(m, new Function('a', 'b', `return a ${operator} b`)(...magicNumber));
@@ -17,7 +17,6 @@ export const over = {
         const operands = [],
               _o = Object.prototype.valueOf,
               _n = Number.prototype.valueOf;
-        let i = 0;
         Object.prototype.valueOf = Number.prototype.valueOf = function () {
             operands.push(this);
             return magicNumber[i++];
