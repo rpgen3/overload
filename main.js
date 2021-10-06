@@ -56,14 +56,15 @@
         }
     });
     const inputA = rpgen3.addInputStr(body, {
-        label: 'A',
+        label: '第一項[A]',
         value: 7
     });
     const inputB = rpgen3.addInputStr(body, {
-        label: 'B',
+        label: '第二項[B]',
         value: 3
     });
     for(const input of [inputA, inputB]) input.elm.on('input', () => {
-        for(const f of g_fs) f(inputA(), inputB());
+        const [a, b] = [inputA, inputB].map(v => v()).map(Number);
+        for(const f of g_fs) f();
     });
 })();
