@@ -17,6 +17,7 @@ export const over = {
         const operands = [],
               _o = Object.prototype.valueOf,
               _n = Number.prototype.valueOf;
+        let i = 0;
         Object.prototype.valueOf = Number.prototype.valueOf = function () {
             operands.push(this);
             return magicNumber[i++];
