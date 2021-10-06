@@ -65,6 +65,6 @@
     });
     for(const input of [inputA, inputB]) input.elm.on('input', () => {
         const [a, b] = [inputA, inputB].map(v => v()).map(Number);
-        for(const f of g_fs) f();
+        for(const f of g_fs) f(a, b);
     });
 })();
