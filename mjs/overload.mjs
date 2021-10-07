@@ -23,7 +23,6 @@ export const over = {
         };
         return function () {
             for(const [v, _v] of _) v.prototype.valueOf = _v;
-            Object.prototype.valueOf = _;
             if(operands.length !== 2) throw 'Opperator must have 2 operands.';
             const [a, b] = operands;
             const m = get(g_map, a.constructor, () => {
