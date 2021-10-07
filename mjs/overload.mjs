@@ -14,14 +14,15 @@ export const over = {
         set(...args);
     },
     get load () {
-        const _ = Object.prototype.valueOf,
+        const _ = [Object, String, Number, BigInt, Boolean, Symbol].map(v => [v, v.prototype.valueOf]),
               operands = [];
         let i = 0;
-        Object.prototype.valueOf = function () {
+        for(const [v] of _) v.prototype.valueOf = function () {
             operands.push(this);
             return magicNumber[i++];
         };
         return function () {
+            for(const [v, _v] of _) v.prototype.valueOf = _v;
             Object.prototype.valueOf = _;
             if(operands.length !== 2) throw 'Opperator must have 2 operands.';
             const [a, b] = operands;
