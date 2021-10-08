@@ -14,7 +14,7 @@ export const over = {
         set(...args);
     },
     get load () {
-        const _ = [Object, String, Number, BigInt, Boolean, Symbol].map(v => [v, v.prototype.valueOf]),
+        const _ = [Function, Object, String, Number, BigInt, Boolean, Symbol].map(v => [v, v.prototype.valueOf]),
               operands = [];
         let i = 0;
         for(const [v] of _) v.prototype.valueOf = function () {
