@@ -9,13 +9,13 @@ const get = (map, key, callback = () => map.set(key, new Map)) => {
     if(!map.has(key)) callback();
     return map.get(key);
 };
-const operands = [];
 export const over = {
     set load (args) {
         set(...args);
     },
     get load () {
-        const _ = [Function, Object, String, Number, BigInt, Boolean, Symbol].map(v => [v, v.prototype.valueOf]);
+        const _ = [Function, Object, String, Number, BigInt, Boolean, Symbol].map(v => [v, v.prototype.valueOf]),
+              operands = [];
         let i = 0;
         for(const [v] of _) v.prototype.valueOf = function () {
             operands.push(this);
