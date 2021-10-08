@@ -1,9 +1,9 @@
 const magicNumber = [21, 3],
       g_map = new Map;
-const set = (class1, operator, class2, func) => {
-    const m = get(g_map, class1),
+const set = (left, operator, right, func) => {
+    const m = get(g_map, left),
           _m = get(m, new Function('a', 'b', `return a ${operator} b`)(...magicNumber).toString());
-    _m.set(class2, func);
+    _m.set(right, func);
 };
 const get = (map, key, callback = () => map.set(key, new Map)) => {
     if(!map.has(key)) callback();
@@ -21,14 +21,14 @@ export const over = {
             operands.push(this);
             return magicNumber[i++];
         };
-        return function () {
+        return result => {
             for(const [v, _v] of _) v.prototype.valueOf = _v;
             if(operands.length !== 2) throw 'Operator must have 2 operands.';
             const [a, b] = operands;
             const m = get(g_map, a.constructor, () => {
                 throw `Left operand type is wrong.`;
             });
-            const _m = get(m, this.toString(), () => {
+            const _m = get(m, result.toString(), () => {
                 throw 'Operator is wrong.';
             });
             const func = get(_m, b.constructor, () => {
