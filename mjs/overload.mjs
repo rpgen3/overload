@@ -24,7 +24,7 @@ export const over = {
         return result => {
             for(const [v, _v] of _) v.prototype.valueOf = _v;
             if(operands.length !== 2) throw 'Operator must have 2 operands.';
-            const [a, b] = operands.splice(-2);
+            const [a, b] = operands;
             const m = get(g_map, a.constructor, () => {
                 throw `Left operand type is wrong.`;
             });
