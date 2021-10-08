@@ -9,13 +9,13 @@ const get = (map, key, callback = () => map.set(key, new Map)) => {
     if(!map.has(key)) callback();
     return map.get(key);
 };
+const operands = [];
 export const over = {
     set load (args) {
         set(...args);
     },
     get load () {
-        const _ = [Function, Object, String, Number, BigInt, Boolean, Symbol].map(v => [v, v.prototype.valueOf]),
-              operands = [];
+        const _ = [Function, Object, String, Number, BigInt, Boolean, Symbol].map(v => [v, v.prototype.valueOf]);
         let i = 0;
         for(const [v] of _) v.prototype.valueOf = function () {
             operands.push(this);
@@ -24,7 +24,7 @@ export const over = {
         return result => {
             for(const [v, _v] of _) v.prototype.valueOf = _v;
             if(operands.length !== 2) throw 'Operator must have 2 operands.';
-            const [a, b] = operands;
+            const [a, b] = operands.splice(-2);
             const m = get(g_map, a.constructor, () => {
                 throw `Left operand type is wrong.`;
             });
